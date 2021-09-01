@@ -1,0 +1,54 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+@section scripts{
+
+    <script>
+
+        //var PlayNextAudio = function () {
+        //    console.log("hlwwwwww")
+        //    var param = {
+        //        Surah_No: $('#VriableCode').val(),
+        //        Ayat_No: parseInt($('#ModelCode').val())
+        //    }
+        //    var url = "/Home/PlayNextAudio";
+
+        //    $.ajax({
+        //        type: "POST",
+        //        url: url,
+        //        data: JSON.stringify(param),
+        //        contentType: "application/json; charset=utf-8",
+
+        //        dataType: "json",
+        //        cache: false,
+        //        success: function (data) {
+        //            alert(data.message);
+        //        },
+        //        error: function (jqXHR, textStatus, errorThrown) {
+        //            alert("Data not added!");
+        //        }
+        //    });
+        //}
+
+        $(document).ready(function () {
+            $("#DetailsView").load("/Home/PlayAudio?surahId=1&&noInSurah=1")
+            $(document).ready(function () {
+                var x = $("#audioplay")[0].duration;
+                console.log(x);
+            })
+            setTimeout(function () {
+                $("#audioplay")[0].play();
+            }, 3000)
+
+        })
+
+        $("#Next").click(function () {
+
+        });
+    </script>
+}
+
+<div id="DetailsView">
+
+</div>

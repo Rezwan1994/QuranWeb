@@ -1,0 +1,140 @@
+﻿@model Al_Quran.Models.ChapterModel
+
+@{
+    ViewData["Title"] = "PlayAudio";
+}
+@section scripts{
+
+    <script>
+        var TotalAyath = '@ViewBag.TotalAyath'
+        var NoInSurah = '@Model.AyatNo';
+        var SurahId = '@Model.SurahNo';
+        var LastAyath = 0;
+        var GetLastAyath = function (SurahId) {
+            var url = "/Home/GetLastAyath";
+
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: JSON.stringify(SurahId),
+                contentType: "application/json; charset=utf-8",
+
+                dataType: "json",
+                cache: false,
+                success: function (data) {
+                    console.log(data);
+                    LastAyath = data.ayath;
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alert("Data not added!");
+                }
+            });
+        }
+        var PlayNext = function (surah, ayat) {
+            var surahno = parseInt(surah);
+            var ayat = parseInt(ayat) + 1;
+            if (ayat <= TotalAyath) {
+                $("#DetailsView").load("/Home/PlayAudio?surahId=" + surahno + "&&noInSurah=" + ayat)
+            }
+            else {
+                surahno = surahno + 1;
+                ayat = 1;
+                $("#DetailsView").load("/Home/PlayAudio?surahId=" + surahno + "&&noInSurah=" + ayat)
+            }
+
+
+        }
+        var PlayPrev = function (surah, ayat) {
+            var surahno = parseInt(surah);
+            var ayat = parseInt(ayat)-1;
+            if (ayat > 0) {
+                $("#DetailsView").load("/Home/PlayAudio?surahId=" + surahno + "&&noInSurah=" + ayat)
+            }
+            else {
+
+                surahno = surahno - 1;
+                ayat = TotalAyath;
+                if (surahno > 0) {
+
+                        $("#DetailsView").load("/Home/PlayAudio?surahId=" + surahno + "&&noInSurah=" + ayat )
+
+
+                }
+            }
+
+        }
+        $(document).ready(function () {
+
+            setTimeout(function () {
+                $("#audioplay")[0].play();
+            }, 3000)
+
+            var aud = document.getElementById("audioplay");
+            aud.onended = function () {
+            PlayNext('@Model.SurahNo', '@Model.AyatNo')
+            };
+            $("#audioplay")[0].on('ended', function () {
+               PlayNext('@Model.SurahNo', '@Model.AyatNo')
+            });
+        })
+
+        $(".surahList").change(function () {
+            var surahNo = $(".surahList").val();
+            var ayathNo = $(".ayathList").val();
+            $("#DetailsView").load("/Home/PlayAudio?surahId=" + surahNo + "&&noInSurah=1")
+        });
+        $(".ayathList").change(function () {
+            var surahNo = $(".surahList").val();
+            var ayathNo = $(".ayathList").val();
+            $("#DetailsView").load("/Home/PlayAudio?surahId=" + surahNo + "&&noInSurah=" + ayathNo)
+        });
+
+        $("#Next").click(function () {
+            $("#Next").prop('disabled', true);
+            PlayNext('@Model.SurahNo', '@Model.AyatNo')
+            $("#Next").prop('disabled', false);
+        });
+
+        $("#Prev").click(function () {
+            $("#Prev").prop('disabled', true);
+            PlayPrev('@Model.SurahNo', '@Model.AyatNo')
+            $("#Prev").prop('disabled', false);
+        });
+
+    </script>
+}
+@Html.DropDownListFor(x => x.SurahNo, (List<SelectListItem>)ViewBag.SurahDropdown, new { @class = "form-control surahList" })
+@Html.DropDownListFor(x => x.AyatNo, (List<SelectListItem>)ViewBag.AyathDropdown, new { @class = "form-control ayathList" })
+<button id="Prev">Prev</button>
+<button id="Next">Next</button>
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Ayat)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Ayat)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.AyatEnglish)
+        </dt>
+        <dd class="col-sm-10">
+
+            @Html.DisplayFor(model => model.AyatEnglish)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.AyatBangla)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.AyatBangla)
+        </dd>
+
+        <dd class="col-sm-10">
+            <audio controls autoplay id="audioplay">
+                <source src="@Model.AudioUrl" type="audio/ogg">
+                Your browser does not support the audio element.
+            </audio>
+        </dd>
+    </dl>
+</div>
+

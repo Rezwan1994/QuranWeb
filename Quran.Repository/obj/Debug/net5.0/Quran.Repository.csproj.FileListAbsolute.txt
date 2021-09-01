@@ -1,0 +1,15 @@
+C:\Users\Piistech\source\repos\Al-Quran\Quran.Repository\bin\Debug\net5.0\Quran.Repository.deps.json
+C:\Users\Piistech\source\repos\Al-Quran\Quran.Repository\bin\Debug\net5.0\Quran.Repository.dll
+C:\Users\Piistech\source\repos\Al-Quran\Quran.Repository\bin\Debug\net5.0\ref\Quran.Repository.dll
+C:\Users\Piistech\source\repos\Al-Quran\Quran.Repository\bin\Debug\net5.0\Quran.Repository.pdb
+C:\Users\Piistech\source\repos\Al-Quran\Quran.Repository\bin\Debug\net5.0\Quran.Entity.dll
+C:\Users\Piistech\source\repos\Al-Quran\Quran.Repository\bin\Debug\net5.0\Quran.Entity.pdb
+C:\Users\Piistech\source\repos\Al-Quran\Quran.Repository\obj\Debug\net5.0\Quran.Repository.csproj.AssemblyReference.cache
+C:\Users\Piistech\source\repos\Al-Quran\Quran.Repository\obj\Debug\net5.0\Quran.Repository.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Piistech\source\repos\Al-Quran\Quran.Repository\obj\Debug\net5.0\Quran.Repository.AssemblyInfoInputs.cache
+C:\Users\Piistech\source\repos\Al-Quran\Quran.Repository\obj\Debug\net5.0\Quran.Repository.AssemblyInfo.cs
+C:\Users\Piistech\source\repos\Al-Quran\Quran.Repository\obj\Debug\net5.0\Quran.Repository.csproj.CoreCompileInputs.cache
+C:\Users\Piistech\source\repos\Al-Quran\Quran.Repository\obj\Debug\net5.0\Quran.Repository.csproj.CopyComplete
+C:\Users\Piistech\source\repos\Al-Quran\Quran.Repository\obj\Debug\net5.0\Quran.Repository.dll
+C:\Users\Piistech\source\repos\Al-Quran\Quran.Repository\obj\Debug\net5.0\ref\Quran.Repository.dll
+C:\Users\Piistech\source\repos\Al-Quran\Quran.Repository\obj\Debug\net5.0\Quran.Repository.pdb
